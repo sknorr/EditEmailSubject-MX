@@ -2,11 +2,9 @@ async function main() {
 
   // define default prefs and migrate legacy settings
   let defaultPrefs = {
-    "version": "2.1.1",
-    "localOnly": true
+    "version": "@@EXTVERSION@@"
   };
   await editEmailSubjectPreferences.setDefaults(defaultPrefs);
-  await editEmailSubjectPreferences.migrateFromLegacy(defaultPrefs, "extensions.editemailsubject.");
 
   messenger.menus.create({
     contexts : ["message_list"],
