@@ -11,9 +11,6 @@
     "lang.subject": {
         "message": "In-Reply-To:"
     },
-    "lang.subjectOld": {
-        "message": "Original In-Reply-To:"
-    },
     "lang.warning": {
         "message": "Warning, In-Reply-To has already been changed. Try it again at your own risk."
     }
