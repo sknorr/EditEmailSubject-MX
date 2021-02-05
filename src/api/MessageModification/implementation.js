@@ -5,10 +5,10 @@ var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
 
 var MessageModification = class extends ExtensionCommon.ExtensionAPI {
-  getAPI(context) {    
+  getAPI(context) {
     context.callOnClose(this);
     let self = this;
-    
+
     return {
       MessageModification: {
 
@@ -20,7 +20,7 @@ var MessageModification = class extends ExtensionCommon.ExtensionAPI {
           }
           return false;
         },
-        
+
         selectMessage: async function(aID) {
           let msgHdr = context.extension.messageManager.get(aID);
           let win = Services.wm.getMostRecentWindow("mail:3pane");
@@ -33,9 +33,9 @@ var MessageModification = class extends ExtensionCommon.ExtensionAPI {
           if (msgHdr) {
             return msgHdr.flags;
           }
-          return false;          
+          return false;
         },
-        
+
         addRaw: async function(aContent, aMailFolder, aRefID) {
           return new Promise(function(resolve, reject) {
               let folder = context.extension.folderManager.get(aMailFolder.accountId, aMailFolder.path);
@@ -70,7 +70,7 @@ var MessageModification = class extends ExtensionCommon.ExtensionAPI {
                     }
                 }
               }
-              
+
               let folderListener = {
                 OnItemAdded: function(parentItem, item, view) {
                     let msgHeader = null;
@@ -88,7 +88,7 @@ var MessageModification = class extends ExtensionCommon.ExtensionAPI {
                           MailServices.mailSession.RemoveFolderListener(folderListener);
                           postActions();
                         }
-                    }            
+                    }
                 },
 
                 OnItemRemoved: function(parentItem, item, view) {},
@@ -103,7 +103,7 @@ var MessageModification = class extends ExtensionCommon.ExtensionAPI {
               let postActions = function() {
                 let msgHeader = folder.GetMessageHeader(key);
                 if (msgHeader.flags & 2) folder.addMessageDispositionState(msgHeader, 0);
-                if (msgHeader.flags & 4096) folder.addMessageDispositionState(msgHeader, 1);                  
+                if (msgHeader.flags & 4096) folder.addMessageDispositionState(msgHeader, 1);
                 resolve(context.extension.messageManager.convert(msgHeader).id);
               }
 
@@ -133,7 +133,7 @@ var MessageModification = class extends ExtensionCommon.ExtensionAPI {
       },
     };
   }
-  
+
   close() {
     // Flush all caches
     Services.obs.notifyObservers(null, "startupcache-invalidate");

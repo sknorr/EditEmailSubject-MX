@@ -25,13 +25,13 @@ var editEmailSubjectPreferences = {
           node.addEventListener("command", function(event) {editEmailSubjectPreferences.savePref(event.target);});
           node.addEventListener("change", function(event) {editEmailSubjectPreferences.savePref(event.target);});
         }
-        this.loadPref(node);    
+        this.loadPref(node);
       }
     },
 
     save: async function(document) {
       for (let node of document.querySelectorAll("[preference]")) {
-        this.savePref(node);    
+        this.savePref(node);
       }
     },
 
@@ -39,18 +39,18 @@ var editEmailSubjectPreferences = {
       let prefName = node.getAttribute("preference");
       let prefValue = await this.getPrefValue(prefName);
       let nodeName = node.tagName.toLowerCase().split(":").pop() + (node.hasAttribute("type") ? "." + node.getAttribute("type").toLowerCase() : "");
-      
+
       // nodename will have the namespace prefix removed and the value of the type attribute (if any) appended
       switch (nodeName) {
         case "checkbox":
         case "input.checkbox": 
           node.checked = prefValue;
           break;
-        
+
         case "textbox":
         case "input.text": 
         default:
-          node.setAttribute("value", prefValue);              
+          node.setAttribute("value", prefValue);
           break;
       }
     },
@@ -73,8 +73,6 @@ var editEmailSubjectPreferences = {
           break;
       }
     },
-    
-
 
     getPrefValue: async function(aName, aFallback = null) {
       let defaultValue = await messenger.storage.local.get({ ["pref.default." + aName] : aFallback });
