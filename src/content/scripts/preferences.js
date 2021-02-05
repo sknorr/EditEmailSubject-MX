@@ -6,19 +6,7 @@ var editEmailSubjectPreferences = {
           await messenger.storage.local.set({ ["pref.default." + pref] : defaultPrefs[pref] });
       }
     },
-    
-    migrateFromLegacy: async function(defaultPrefs, prefBranch) {
-      const prefs = Object.keys(defaultPrefs);
-      for (const pref of prefs) {
-        let legacyValue = await messenger.LegacyPrefs.get(prefBranch + pref, defaultPrefs[pref]);
-        if (legacyValue !== null) {
-          console.log("Migrating legacy preference <" + prefBranch + pref + "> = <" + legacyValue + ">.");
-          await messenger.storage.sync.set({ ["pref.value." + pref] : legacyValue });
-          await messenger.LegacyPrefs.clear(prefBranch + pref);
-        }
-      }
-    },
-    
+
     load: async function(document) {
       for (let node of document.querySelectorAll("[preference]")) {
         if (node.getAttribute("instantApply") == "true") {
