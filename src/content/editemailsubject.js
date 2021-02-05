@@ -109,7 +109,7 @@ var editEmailSubjectMain = {
 			try {
 				let date = this.msg.headers["date"][0].replace(/(\d{2}):(\d{2}):(\d{2})/, function (str, p1, p2, p3) {
 					var seconds = parseInt(p3) + 1;
-					if (seconds > 59) seconds = 58;
+					if (seconds > 59) seconds = 45;
 					if (seconds < 10) seconds = "0" + seconds.toString();
 					return p1 + ":" + p2 + ":" + seconds});
 
