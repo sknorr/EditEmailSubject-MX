@@ -21,7 +21,6 @@ var editEmailSubjectMain = {
 	// open edit popup
 	edit: async function (info) {
 		this.msg = {};
-		this.msg.localMode = await editEmailSubjectPreferences.getPrefValue("localOnly");
 
 		if (info.selectedMessages && info.selectedMessages.messages.length > 0) {
 			let MessageHeader = info.selectedMessages.messages[0];
@@ -31,13 +30,11 @@ var editEmailSubjectMain = {
 			this.msg.alreadyModified = false;
 
 
-			// in remoteMode, if the header contains X-EditIRT, we show a warning about being already modified
-			if (!this.msg.localMode) {
-				let full = await messenger.messages.getFull(this.msg.id);
-				this.msg.headers = full.headers;
-				this.msg.alreadyModified = this.msg.headers.hasOwnProperty("x-editirt");
-				this.msg.raw = await messenger.messages.getRaw(this.msg.id);
-			}
+			// if the header contains X-EditIRT, we show a warning about being already modified
+			let full = await messenger.messages.getFull(this.msg.id);
+			this.msg.headers = full.headers;
+			this.msg.alreadyModified = this.msg.headers.hasOwnProperty("x-editirt");
+			this.msg.raw = await messenger.messages.getRaw(this.msg.id);
 
 			messenger.runtime.onMessage.addListener(this.handleMessage);
 			this.msg.popupWindow = await messenger.windows.create({
@@ -61,13 +58,8 @@ var editEmailSubjectMain = {
 				break;
 				case "requestUpdate":
 					if (request.newSubject != editEmailSubjectMain.msg.subject) {
-						if (editEmailSubjectMain.msg.localMode) {
-							// just update the subject value in the Thunderbird DB, do not change the actual email
-							editEmailSubjectMain.updateSubject(request);
-						} else {
-							//change the entire email
-							editEmailSubjectMain.updateMessage(request);
-						}
+						//change the entire email
+						editEmailSubjectMain.updateMessage(request);
 					}
 				break;
 			}
