@@ -1,9 +1,9 @@
 {
     "extensionDescription": {
-        "message": "Edit received e-mail subjects."
+        "message": "Edit received e-mail In-Reply-To/References headers."
     },
     "extensionName": {
-        "message": "Edit email subject"
+        "message": "EditIRT"
     },
     "lang.settings": {
         "message": "Settings"
@@ -12,15 +12,15 @@
         "message": "Only local changes (will only change local Thunderbird index database)"
     },
     "lang.menuTitle": {
-        "message": "&Edit Mail Subject"
+        "message": "&Edit In-Reply-To"
     },
     "lang.subject": {
-        "message": "Subject:"
+        "message": "In-Reply-To:"
     },
     "lang.subjectOld": {
-        "message": "Original subject:"
+        "message": "Original In-Reply-To:"
     },
     "lang.warning": {
-        "message": "Warning, subject has already been changed. Try it again at your own risk."
+        "message": "Warning, In-Reply-To has already been changed. Try it again at your own risk."
     }
 }
