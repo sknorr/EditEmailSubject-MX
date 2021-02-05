@@ -5,12 +5,6 @@
     "extensionName": {
         "message": "EditIRT"
     },
-    "lang.settings": {
-        "message": "Settings"
-    },
-    "lang.localOnly": {
-        "message": "Only local changes (will only change local Thunderbird index database)"
-    },
     "lang.menuTitle": {
         "message": "&Edit In-Reply-To"
     },
