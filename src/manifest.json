@@ -1,12 +1,12 @@
 {
 	"applications": {
 		"gecko": {
-			"id": "EditMailSubject@jcp.convenant",
+			"id": "EditIRT@tbsked.it",
 			"strict_min_version": "78.0"
 		}
 	},
 	"manifest_version": 2,
-	"name": "EditEmailSubject MX",
+	"name": "EditIRT",
 	"version": "4.3",
 	"author": "tb-developers",
 	"description": "__MSG_extensionDescription__",
