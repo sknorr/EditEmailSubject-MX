@@ -58,4 +58,4 @@
 		localization.updateDocument();
 	}, { once: true });
 
-})("EditMailSubject@jcp.convenant", "__EESMSG_");
+})("EditIRT@tbsked.it", "__EESMSG_");
